@@ -7,6 +7,9 @@ spring:
     user:
       name: claimwise
       password: 123456
+  web:
+    servlet:
+      context-path: /auth  # This is important for gateway routing
 
 server:
   port: 8084
@@ -14,5 +17,8 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
-
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
