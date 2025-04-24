@@ -1,11 +1,26 @@
 server:
-  port: 8761
+  port: 8761  # Default Eureka server port
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false  # This server doesn't register itself
+    fetch-registry: false       # Not fetching registry as it's the server
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
 spring:
   application:
-    name: discovery-server
+    name: eureka-server
+  security:
+    user:
+      name: admin       # Optional: for basic security
+      password: password # Optional: for basic security
 
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
+# Optional: Actuator endpoints configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
