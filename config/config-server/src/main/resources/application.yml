@@ -8,8 +8,8 @@ spring:
     name: config-server
   security:
     user:
-      name: claimwise  # Env var with default
-      password: 123456   # MUST be set externally
+      name: ${configserver.username}
+      password: ${configserver.password}
   cloud:
     config:
       server:
@@ -17,9 +17,13 @@ spring:
           uri: https://github.com/harshprince/claimwise
           search-paths: config
           default-label: main
-          username: ${GIT_USER:}      # GitHub username
-          password: ${GIT_TOKEN:}     # GitHub PAT (personal access token)
+          username: ${GIT_USER:}      # GitHub username (env var)
+          password: ${GIT_TOKEN:}     # GitHub PAT (env var)
           clone-on-start: true
+
+configserver:
+  username: claimwise   # Default username for config server
+  password: 123456      # Default password for config server
 
 eureka:
   client:
