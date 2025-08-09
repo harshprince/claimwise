@@ -1,0 +1,11 @@
+spring:
+  profiles: prod
+
+  security:
+    user:
+      name: prodAdmin
+      password: prodStrongPassword123
+
+eureka:
+  instance:
+    hostname: eureka.claimwise-prod.com  # replace with real domain

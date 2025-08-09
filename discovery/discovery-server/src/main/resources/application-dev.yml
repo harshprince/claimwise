@@ -1,0 +1,13 @@
+spring:
+  profiles: dev
+  security:
+    user:
+      name: admin
+      password: password
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false

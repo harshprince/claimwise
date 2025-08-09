@@ -1,12 +1,6 @@
-server:
-  port: 8080
-
 spring:
-  application:
-    name: api-gateway
+  profiles: prod
   cloud:
-    config:
-      enabled: false
     gateway:
       routes:
         - id: auth-service
@@ -32,11 +26,6 @@ spring:
             - StripPrefix=1
             - name: JwtAuthenticationFilter
 
-jwt:
-  secret-key: "dGhpcy1pcy1hLXN1cGVyLXNlY3VyZS1zZWNyZXQta2V5LTI1Ni1iaXRz" # Base64 encoded 256-bit key
-  issuer: "insurance-claim-system"
-  expiration: 86400000 # 24 hours in milliseconds
-
 logging:
   level:
-    root: INFO
+    root: WARN

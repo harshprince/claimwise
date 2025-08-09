@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/harshprince/claimwise
+          username: ${GIT_USER}
+          password: ${GIT_TOKEN}
+
+  security:
+    user:
+      name: configuser
+      password: prodStrongPassword123
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+
+configserver:
+  username: ${CONFIG_SERVER_USERNAME}
+  password: ${CONFIG_SERVER_PASSWORD}
+
+server:
+  ssl:
+    enabled: true
+    key-store: ${KEYSTORE_PATH}
+    key-store-password: ${KEYSTORE_PASSWORD}
+    key-store-type: PKCS12

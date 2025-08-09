@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: auth-service
+  config:
+    import: optional:configserver:http://config-server:8888
+  security:
+    user:
+      name: claimwise
+      password: ${AUTH_SERVICE_PASSWORD}   # Read from env variable in production
+  web:
+    servlet:
+      context-path: /auth
+
+server:
+  port: 8084  # You can change if prod port differs
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true

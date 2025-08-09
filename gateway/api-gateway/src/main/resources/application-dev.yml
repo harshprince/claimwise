@@ -1,23 +1,17 @@
-server:
-  port: 8080
-
 spring:
-  application:
-    name: api-gateway
+  profiles: dev
   cloud:
-    config:
-      enabled: false
     gateway:
       routes:
         - id: auth-service
-          uri: lb://AUTH-SERVICE
+          uri: http://localhost:8083
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
         
         - id: user-service
-          uri: lb://USER-SERVICE
+          uri: http://localhost:8082
           predicates:
             - Path=/user/**
           filters:
@@ -25,18 +19,13 @@ spring:
             - name: JwtAuthenticationFilter
         
         - id: claim-service
-          uri: lb://CLAIM-SERVICE
+          uri: http://localhost:8084
           predicates:
             - Path=/claim/**
           filters:
             - StripPrefix=1
             - name: JwtAuthenticationFilter
 
-jwt:
-  secret-key: "dGhpcy1pcy1hLXN1cGVyLXNlY3VyZS1zZWNyZXQta2V5LTI1Ni1iaXRz" # Base64 encoded 256-bit key
-  issuer: "insurance-claim-system"
-  expiration: 86400000 # 24 hours in milliseconds
-
 logging:
   level:
-    root: INFO
+    root: DEBUG
